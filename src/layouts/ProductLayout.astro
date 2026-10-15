@@ -21,7 +21,9 @@ const next = nextItem(slug);
 ---
 <Base title={title} description={tagline} active={section} color={item.color} image={hero}>
   <article class="product">
+    <div class="read-progress" aria-hidden="true"><span data-progress></span></div>
     <header class="p-hero">
+      <p class="role"><span>My role</span>{item.role}</p>
       <p class="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <p class="tagline" set:html={tagline}></p>
@@ -32,7 +34,16 @@ const next = nextItem(slug);
       {summary.map(([k, v]) => <div><h2>{k}</h2><p set:html={v}></p></div>)}
     </section>
 
-    <slot />
+    <!-- jump-to contents: built from each chapter's label; sticky rail on desktop, pill + sheet on phones -->
+    <nav class="toc" aria-label="On this page" data-toc hidden>
+      <p class="toc-title">On this page</p>
+      <ol data-toc-list></ol>
+    </nav>
+    <button class="toc-pill" type="button" aria-expanded="false" data-toc-pill hidden><span data-toc-current>Contents</span> <span aria-hidden="true">▾</span></button>
+
+    <div data-chapters>
+      <slot />
+    </div>
 
     <!-- Next up: the next project as a title deed, glowing in its own color -->
     <a class="p-next" href={next.href} data-face={next.face} style={`--c:var(--${next.color});--ct:var(--${next.color}-text)`}>
@@ -52,26 +63,28 @@ const next = nextItem(slug);
 
 <style is:global>
   .product { --band: 1040px; --text: 680px; }
-  .p-hero { padding: 140px 20px 0; text-align: center; }
+  .p-hero { padding: 128px 20px 0; text-align: center; }
+  .role { display: inline-flex; align-items: center; gap: 10px; margin: 0 auto 22px; padding: 7px 16px 7px 7px; border-radius: 999px; background: var(--paper-2); font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+  .role span { padding: 4px 10px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .p-hero h1 { font-size: clamp(3.2rem, 8vw, 6rem); letter-spacing: -0.01em; margin: 0 0 0.2em; }
   .tagline { font-size: clamp(1.2rem, 2vw, 1.55rem); color: var(--ink-2); max-width: 720px; margin: 0 auto; line-height: 1.4; }
   .p-hero-img { background: var(--tint); width: min(100%, var(--band)); margin: 56px auto 0; border-radius: 28px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.1); }
 
   .p-hero-img.tall { width: min(100%, 520px); }
-  .p-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: min(100% - 40px, var(--band)); margin: 88px auto 0; text-align: center; }
+  .p-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: min(100% - 40px, var(--band)); margin: 56px auto 0; text-align: center; }
   .p-summary h2 { font-family: var(--sans); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
   .p-summary p { font-size: 1.15rem; color: var(--ink-2); margin: 0; line-height: 1.5; }
 
   /* chapters: full-bleed bands, centered headline, then content */
-  .chapter { padding: 120px 20px; text-align: center; }
+  .chapter { padding: 84px 20px; text-align: center; scroll-margin-top: 80px; }
   .chapter > * { max-width: var(--text); margin-left: auto; margin-right: auto; }
   .chapter > .band { max-width: var(--band); }
   .chapter .num { display: block; font-family: var(--sans); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-text); margin-bottom: 14px; letter-spacing: 0.04em; }
-  .chapter h2 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); letter-spacing: -0.01em; margin-bottom: 0.35em; text-wrap: balance; }
+  .chapter h2 { font-size: clamp(2rem, 3.8vw, 3.1rem); letter-spacing: -0.035em; margin-bottom: 0.35em; text-wrap: balance; }
   .chapter > p, .tagline, .learn p { text-wrap: pretty; }
   .chapter > p { font-size: 1.25rem; color: var(--ink-2); line-height: 1.55; }
   .chapter img, .chapter video { border-radius: 22px; }
-  .band { margin-top: 56px; }
+  .band { margin-top: 40px; }
   .band img { width: 100%; box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08); }
 
   .bigstats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
@@ -83,7 +96,7 @@ const next = nextItem(slug);
   .pull + .pull { margin-top: 28px; }
   .pull cite { display: block; margin-top: 10px; font: 400 0.95rem var(--sans); color: var(--ink-3); font-style: normal; }
 
-  .learn { margin-top: 64px !important; padding-top: 28px; border-top: 1.5px solid var(--accent); }
+  .learn { margin-top: 44px !important; padding-top: 28px; border-top: 1.5px solid var(--accent); }
   .learn b { display: block; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 8px; }
   .learn p { margin: 0; font-family: var(--serif); font-weight: 650; font-size: 1.7rem; line-height: 1.35; letter-spacing: -0.01em; color: var(--ink); }
 
@@ -147,9 +160,65 @@ const next = nextItem(slug);
   @media (max-width: 760px) {
     .decisions { grid-template-columns: 1fr; }
     .p-summary, .bigstats, .cols { grid-template-columns: 1fr; gap: 28px; }
-    .chapter { padding: 80px 20px; }
+    .chapter { padding: 60px 20px; }
     .p-next { flex-direction: column; gap: 36px; padding-top: 80px; }
     .deed { width: min(100%, 300px); }
     .next-copy { text-align: center; }
   }
+
+  /* reading aids: progress bar, contents rail (desktop), contents pill (phone) */
+  .read-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 120; height: 3px; pointer-events: none; }
+  .read-progress span { display: block; height: 100%; width: 0; background: var(--accent-text, #111); transition: width 0.1s linear; }
+  .toc { position: fixed; left: max(20px, calc((100vw - 1040px) / 2 - 220px)); top: 50%; z-index: 50; width: 190px; transform: translateY(-50%); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .toc.on { opacity: 1; pointer-events: auto; }
+  .toc-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; border-left: 2px solid var(--line); }
+  .toc a { display: block; margin-left: -2px; padding: 6px 0 6px 14px; border-left: 2px solid transparent; color: var(--ink-3); font-size: 0.88rem; line-height: 1.3; text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+  .toc a:hover { color: var(--ink); }
+  .toc a[aria-current='true'] { color: var(--ink); font-weight: 600; border-color: var(--accent-text, #111); }
+  .toc-pill { position: fixed; left: 50%; bottom: 18px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 11px 18px; border: 0; border-radius: 999px; background: #111; color: #fff; font: 600 0.9rem var(--sans); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: opacity 0.3s, transform 0.3s var(--ease); max-width: calc(100vw - 40px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .toc-pill.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+  @media (max-width: 1279px) {
+    .toc { left: 50%; top: auto; bottom: 70px; width: min(320px, calc(100vw - 40px)); transform: translateX(-50%); padding: 16px 18px; border-radius: 20px; background: #fff; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18); opacity: 0 !important; pointer-events: none !important; }
+    .toc.open { opacity: 1 !important; pointer-events: auto !important; }
+  }
+  @media (min-width: 1280px) { .toc-pill { display: none; } }
 </style>
+
+<script>
+  // Contents list from chapter labels, scroll-spy, and a reading progress bar.
+  const chapters = [...document.querySelectorAll<HTMLElement>('[data-chapters] > .chapter')].filter((c) => c.querySelector('.num'));
+  const toc = document.querySelector<HTMLElement>('[data-toc]');
+  const list = document.querySelector<HTMLElement>('[data-toc-list]');
+  const pill = document.querySelector<HTMLButtonElement>('[data-toc-pill]');
+  const current = document.querySelector<HTMLElement>('[data-toc-current]');
+  const bar = document.querySelector<HTMLElement>('[data-progress]');
+  const label = (c: HTMLElement) => c.querySelector('.num')!.textContent!.replace(/^\d+\s*·\s*/, '').trim();
+  if (toc && list && pill && chapters.length > 2) {
+    toc.hidden = false; pill.hidden = false;
+    const links = chapters.map((c, i) => {
+      c.id ||= 'ch-' + (i + 1);
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + c.id; a.textContent = label(c);
+      a.addEventListener('click', () => { toc.classList.remove('open'); pill.setAttribute('aria-expanded', 'false'); });
+      li.append(a); list.append(li);
+      return a;
+    });
+    pill.addEventListener('click', () => { const o = toc.classList.toggle('open'); pill.setAttribute('aria-expanded', String(o)); });
+    const update = () => {
+      const y = scrollY + innerHeight * 0.35;
+      let on = -1;
+      chapters.forEach((c, i) => { if (c.offsetTop <= y) on = i; });
+      links.forEach((a, i) => a.setAttribute('aria-current', String(i === on)));
+      const started = on >= 0;
+      const end = document.querySelector<HTMLElement>('.p-next');
+      const done = end ? end.getBoundingClientRect().top < innerHeight * 0.6 : false;
+      toc.classList.toggle('on', started && !done);
+      pill.classList.toggle('on', started && !done);
+      if (current) current.textContent = on >= 0 ? label(chapters[on]) : 'Contents';
+      if (bar) { const h = document.documentElement.scrollHeight - innerHeight; bar.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%'; }
+    };
+    addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
+  }
+</script>
