@@ -1,5 +1,6 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
+import WhatIDid from '../../components/WhatIDid.astro';
 import Video from '../../components/Video.astro';
 ---
 <ProductLayout
@@ -10,11 +11,17 @@ import Video from '../../components/Video.astro';
   hero="/images/releaf/cover.webp"
   heroAlt="The Canduela candle on a wood slice beside the same jar turned into a lavender planter"
   summary={[
-    ['The problem', 'Millions of <strong>candle jars</strong> end up in landfills every year.'],
     ['What I did', 'Founded it. Owned <strong>product</strong>, <strong>branding</strong>, and <strong>go-to-market</strong>.'],
+    ['The problem', 'Millions of <strong>candle jars</strong> end up in landfills every year.'],
     ['The result', '<strong>4th</strong> in an international business plan competition, then <strong>SVC finalist</strong> at WashU.'],
   ]}
 >
+  <WhatIDid heading='Founder, start to finish.' items={[
+    ['Founded it', 'Took a <strong>class project</strong> to a startup, owning <strong>product</strong>, <strong>branding</strong> and <strong>go-to-market</strong>.'],
+    ['Talked to customers', '<strong>146 survey responses</strong> and discovery interviews, which shaped the twist-open jar. <strong>26 customers</strong> so far.'],
+    ['Pitched it', '<strong>4th</strong> in an international business plan competition, then <strong>Top 16 of 131</strong> at the Skandalaris Venture Competition.'],
+  ]} />
+
   <section class="chapter">
     <span class="num">Why this problem</span>
     <p class="pull">“As an avid candle user, I had <span class="hl">no use for my jars</span> once the candle was gone. That’s why the duality is perfect.”</p>

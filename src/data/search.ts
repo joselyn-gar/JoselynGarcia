@@ -22,7 +22,7 @@ const work: Entry[] = items.map((i) => ({
 const pages: Entry[] = [
   { title: 'About me', href: '/about', group: 'Pages', keywords: 'about bio who story strengths clifton hobbies' },
   { title: 'All projects', href: '/projects', group: 'Pages', keywords: 'projects case studies work portfolio' },
-  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun textiles posters fragrance' },
+  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun textiles posters reels' },
 ];
 pages.push({ title: 'Resume', href: '/resume', group: 'Pages', keywords: 'resume cv experience pdf' });
 
@@ -39,7 +39,7 @@ const answers: Entry[] = [
     href: '/about#toolbox',
     group: 'Quick answers',
     keywords: 'tools software figma framer canva excel illustrator blender procreate claude photoshop capcut stack',
-    answer: 'Figma, Framer, Canva, Adobe Illustrator + Photoshop, Blender, Procreate, Excel, CapCut, and Claude.',
+    answer: 'Figma, Framer, Canva, Adobe Illustrator + Photoshop, Blender, Procreate, Excel, CapCut, Claude, and Google AI Studio.',
   },
   {
     title: 'Show me UX work',
@@ -56,11 +56,11 @@ const answers: Entry[] = [
     answer: 'Circular STL is a full campaign + effectiveness study. Lyft Explore includes a go-to-market campaign.',
   },
   {
-    title: 'Beauty + fashion',
-    href: '/playground#jdel',
+    title: 'AI + vibe coding',
+    href: '/projects/lock-in',
     group: 'Quick answers',
-    keywords: 'beauty fashion fragrance perfume cosmetics textiles print style',
-    answer: 'JDel is my fragrance brand concept. Textiles covers my print design and a bodice mockup.',
+    keywords: 'ai vibe coding google ai studio prompt app study canvas gamification handshake lock in',
+    answer: 'Lock In is a study app I vibe-coded in Google AI Studio. It turns Canvas courses into exam-prep games.',
   },
   {
     title: 'What are you studying?',

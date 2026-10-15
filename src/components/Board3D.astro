@@ -23,7 +23,7 @@ const tiles: T[] = [
   p('b1', 'design-social'), p('b2', 'textiles'),
   { area: 'con', href: `mailto:${site.email}`, kind: 'Just visiting?', title: 'Say hi', big: 'Hi', tags: 'Email me', face: 4, type: 'corner' },
   { area: 'l1', href: '/about#away', kind: 'Chance', title: 'Fun facts', big: '?', tags: 'Dodgers · jazz · board games', face: 3, type: 'chance' },
-  p('l2', 'jdel'),
+  p('l2', 'lock-in'),
 ];
 const dieSize = Math.round(size / 14);
 ---
@@ -121,7 +121,7 @@ const dieSize = Math.round(size / 14);
   .b3-tip { position: absolute; z-index: 5; pointer-events: none; display: grid; gap: 2px; min-width: 180px; padding: 12px 16px 14px; border-radius: 14px; background: #fff; color: #1a1a1a; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3); opacity: 0; transform: translate(-50%, calc(-100% - 6px)) scale(0.96); transition: opacity 0.2s, transform 0.25s var(--ease); }
   .b3-tip.on { opacity: 1; transform: translate(-50%, calc(-100% - 14px)) scale(1); }
   .b3-tip small { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5f5b54; }
-  .b3-tip b { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; line-height: 1.05; }
+  .b3-tip b { font-family: var(--serif); font-weight: 650; font-size: 1.6rem; line-height: 1.05; }
   .b3-tip span { font-size: 0.85rem; color: #5f5b54; }
   .b3-hint { margin-top: 18px; font-size: 0.95rem; color: rgba(255, 255, 255, 0.62); }
   .b3-hint strong { color: #fff; }
@@ -135,7 +135,7 @@ const dieSize = Math.round(size / 14);
     .b3-flat { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; margin-top: 8px; }
     .b3-flat a { display: grid; gap: 2px; min-height: 64px; padding: 14px 14px 12px; border-radius: 14px; background: #fffdf8; color: #1a1a1a; text-decoration: none; border-top: 6px solid var(--c); }
     .b3-flat small { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5f5b54; }
-    .b3-flat b { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; line-height: 1.05; }
+    .b3-flat b { font-family: var(--serif); font-weight: 650; font-size: 1.3rem; line-height: 1.05; }
   }
   @media (prefers-reduced-motion: reduce) { .b3-board, .b3-tile { transition: none; } }
 </style>

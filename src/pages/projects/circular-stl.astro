@@ -1,5 +1,6 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
+import WhatIDid from '../../components/WhatIDid.astro';
 ---
 <ProductLayout
   slug="circular-stl"
@@ -9,11 +10,17 @@ import ProductLayout from '../../layouts/ProductLayout.astro';
   hero="/images/stl/cover.webp"
   heroAlt="The four #AroundSTL Instagram posts side by side"
   summary={[
-    ['The problem', 'People didn’t understand what a <strong>Circularity District</strong> was.'],
     ['What I did', 'Headed <strong>ideation</strong>, the <strong>mockups</strong>, and the <strong>survey</strong>.'],
+    ['The problem', 'People didn’t understand what a <strong>Circularity District</strong> was.'],
     ['The result', '<strong>4.15/5</strong> favorability, and a <strong>happy client</strong>.'],
   ]}
 >
+  <WhatIDid heading='Campaign, mockups, proof.' items={[
+    ['Headed ideation', 'Shaped the <strong>#AroundSTL</strong> campaign and its tagline for the proposed Circularity District.'],
+    ['Made the mockups', 'Designed the <strong>Instagram carousel</strong> posts that explain the District in four swipes.'],
+    ['Ran the survey', 'A <strong>16-question survey</strong> with <strong>31 respondents</strong>, written up in the <a href="/files/circular-stl-report.pdf" target="_blank" rel="noopener">full report ↗</a>.'],
+  ]} />
+
   <section class="chapter">
     <span class="num">Why this problem</span>
     <p class="pull">“I took this class for my <span class="hl">love of sustainability</span>. We got a real client, and my team chose marketing.”</p>

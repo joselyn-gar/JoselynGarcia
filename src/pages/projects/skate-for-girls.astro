@@ -1,5 +1,6 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
+import WhatIDid from '../../components/WhatIDid.astro';
 import Video from '../../components/Video.astro';
 import SkateNav from '../../components/SkateNav.astro';
 ---
@@ -11,11 +12,17 @@ import SkateNav from '../../components/SkateNav.astro';
   hero="/images/skate/cover.webp"
   heroAlt="The redesigned SKATE for Girls homepage: girls on the ice beside a purple card reading Empowering girls through math on ice and confidence in the classroom"
   summary={[
-    ['The problem', '<strong>45%</strong> of visitors couldn’t find the Donate button.'],
     ['What I did', 'Led the <strong>homepage design</strong>, ran <strong>discovery interviews</strong>, and wrote the <strong>survey</strong>.'],
+    ['The problem', '<strong>45%</strong> of visitors couldn’t find the Donate button.'],
     ['The result', 'A <strong>prototype</strong> and recommendations the client can ship on <strong>Wix</strong>.'],
   ]}
 >
+  <WhatIDid heading='Research in, design out.' items={[
+    ['Wrote the survey', '<strong>38 responses</strong>. It showed <strong>45%</strong> of visitors couldn’t find Donate.'],
+    ['Ran discovery', 'A <strong>1:1 interview</strong> with a former competitive skater, focused on the pages donors use most.'],
+    ['Led the homepage', 'From <strong>wireframe</strong> to <strong>final design</strong> to a clickable <strong>prototype</strong> the client can ship on Wix.'],
+  ]} />
+
   <section class="chapter">
     <span class="num">Why this project</span>
     <p class="pull">“I joined to <span class="hl">learn UI/UX</span>. It was my first time doing web work, and I knew I wanted something creative.”</p>

@@ -4,40 +4,41 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  /* Dark theme. --white is the raised card surface; --ink is the text color. */
-  --night: #0a090e;
-  --paper: #0a090e;
-  --paper-2: #16131b;
-  --ink: #f5f2ee;
-  --ink-2: rgba(245, 242, 238, 0.78);
-  --ink-3: rgba(245, 242, 238, 0.62);
-  --line: rgba(255, 255, 255, 0.12);
-  --white: #16131b;
-  --dark: #1a1a1a; /* text on light surfaces (dice, deed cards, white buttons) */
-  --glass: rgba(20, 20, 20, 0.72);
-  --glow: #ff2d8f;
+  /* Light, minimal theme. --white is the raised card surface; --ink is the text color. */
+  --night: #ffffff;
+  --paper: #ffffff;
+  --paper-2: #f4f4f4;
+  --ink: #111111;
+  --ink-2: #4d4d4d;
+  --ink-3: #6e6e6e;
+  --line: rgba(0, 0, 0, 0.1);
+  --white: #f6f6f6;
+  --dark: #111111; /* text on light surfaces (dice, deed cards, white buttons) */
+  --glass: rgba(255, 255, 255, 0.86);
+  --glow: #111111;
 
-  /* Property colors: tint = dark card wash, accent = strong color, text = accent that reads on dark */
-  --lyft-tint: #2a0f24; --lyft: #ff00bf; --lyft-text: #ff6fd4;
-  --releaf-tint: #1b1f15; --releaf: #6b7a4f; --releaf-text: #b9c99a;
-  --skate-tint: #21152b; --skate: #9b3fd1; --skate-text: #d19af5;
-  --stl-tint: #0f2019; --stl: #2e7d5b; --stl-text: #7fd1aa;
-  --jdel-tint: #241a10; --jdel: #8a5a2b; --jdel-text: #e0b07e;
-  --tex-tint: #2a170e; --tex: #dd6031; --tex-text: #ff9a6b;
-  --design-tint: #2a1019; --design: #c2366b; --design-text: #ff7aa8;
-  --write-tint: #121a2a; --write: #2f5aa8; --write-text: #8fb0ff;
+  /* Property colors: tint = soft card wash, accent = strong color, text = AA-safe accent for small text */
+  --lyft-tint: #ffe6f6; --lyft: #ff00bf; --lyft-text: #b8008a;
+  --releaf-tint: #eaefe1; --releaf: #6b7a4f; --releaf-text: #55623e;
+  --skate-tint: #f1eafa; --skate: #9b3fd1; --skate-text: #7a2fa8;
+  --stl-tint: #e4f2ea; --stl: #2e7d5b; --stl-text: #276b4e;
+  --lockin-tint: #f3eedf; --lockin: #3e4434; --lockin-text: #3e4434;
+  --jdel-tint: #f4e9dc; --jdel: #8a5a2b; --jdel-text: #7a4f25;
+  --tex-tint: #fcebdf; --tex: #dd6031; --tex-text: #a8411a;
+  --design-tint: #fcebf1; --design: #c2366b; --design-text: #a02a58;
+  --write-tint: #e6edf9; --write: #2f5aa8; --write-text: #2f5aa8;
 
   --accent: var(--ink);
   --accent-text: var(--ink);
   --tint: var(--paper-2);
 
-  --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --serif: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; /* headings: bold, tight sans */
   --sans: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --radius: 18px;
   --radius-lg: 28px;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.3), 0 20px 48px rgba(0, 0, 0, 0.45);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.04), 0 20px 48px rgba(0, 0, 0, 0.08);
   --wrap: 1180px;
   --read: 720px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -52,33 +53,27 @@ body {
   font-size: 18px;
   line-height: 1.6;
   color: var(--ink);
-  background-color: var(--night);
-  /* one soft glow that scrolls with the page: pink at the top, a hint of red midway, pink again at the end */
-  background-image:
-    radial-gradient(60% 1100px at 78% 0, rgba(255, 0, 140, 0.24), transparent 70%),
-    radial-gradient(45% 900px at 15% 45%, rgba(255, 60, 60, 0.09), transparent 70%),
-    radial-gradient(55% 1000px at 70% 100%, rgba(255, 0, 140, 0.14), transparent 70%);
-  background-repeat: no-repeat;
+  background-color: var(--paper);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 img, video { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
-h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 0.4em; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 650; line-height: 1.04; letter-spacing: -0.04em; margin: 0 0 0.4em; }
 h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); }
 h2 { font-size: clamp(2.1rem, 4vw, 3rem); }
 h3 { font-size: 1.6rem; }
 p { margin: 0 0 1em; }
 strong { font-weight: 700; color: var(--ink); }
 em { font-family: var(--serif); font-style: italic; font-size: 1.12em; }
-::selection { background: rgba(255, 0, 191, 0.35); }
+::selection { background: rgba(255, 0, 191, 0.2); }
 
 :focus-visible { outline: 2.5px solid var(--ink); outline-offset: 3px; border-radius: 8px; }
 
 .skip-link {
   position: absolute; left: 12px; top: -60px; z-index: 1000;
-  background: var(--ink); color: var(--dark); padding: 10px 16px; border-radius: 999px; text-decoration: none;
+  background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 999px; text-decoration: none;
 }
 .skip-link:focus { top: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -94,19 +89,19 @@ section { scroll-margin-top: 96px; }
 .btn {
   display: inline-flex; align-items: center; gap: 0.5em;
   padding: 0.75em 1.3em; border-radius: 999px; border: 1px solid var(--ink);
-  background: var(--ink); color: var(--dark); text-decoration: none; font-weight: 550; font-size: 0.95rem;
+  background: var(--ink); color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem;
   cursor: pointer; transition: transform 0.25s var(--ease), background 0.25s, color 0.25s;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn.ghost { background: transparent; color: var(--ink); }
-.btn.ghost:hover { background: var(--ink); color: var(--dark); }
+.btn.ghost { background: var(--paper-2); border-color: var(--paper-2); color: var(--ink); }
+.btn.ghost:hover { background: #e9e9e9; }
 .chip {
   display: inline-flex; align-items: center; padding: 0.5em 1em; border-radius: 999px;
-  border: 1px solid var(--line); background: rgba(255, 255, 255, 0.06); color: var(--ink-2);
+  border: 0; background: var(--paper-2); color: var(--ink-2);
   font-size: 0.9rem; text-decoration: none; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.2s var(--ease);
 }
-.chip:hover { border-color: rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.12); transform: translateY(-1px); }
-.tag { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 0.25em 0.7em; border-radius: 999px; background: rgba(255, 255, 255, 0.08); color: var(--ink-2); }
+.chip:hover { background: #ebebeb; transform: translateY(-1px); }
+.tag { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 0.25em 0.7em; border-radius: 999px; background: var(--paper-2); color: var(--ink-2); }
 
 /* ---------- Case study content ---------- */
 .case-section { padding: 56px 0; }
@@ -134,9 +129,9 @@ section { scroll-margin-top: 96px; }
 
 .callout { border-left: 4px solid var(--accent); background: var(--tint); padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0; margin: 24px 0; }
 .callout p { margin: 0; color: var(--ink); }
-.quote { font-family: var(--serif); font-weight: 400; font-size: 1.55rem; line-height: 1.25; letter-spacing: -0.01em; color: var(--accent-text); margin: 0 0 0.6em; }
+.quote { font-family: var(--serif); font-weight: 650; font-size: 1.55rem; line-height: 1.25; letter-spacing: -0.01em; color: var(--accent-text); margin: 0 0 0.6em; }
 .quotes { display: grid; gap: 16px; margin: 24px 0; }
-.quotes blockquote { margin: 0; padding: 20px 24px; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); font-family: var(--serif); font-weight: 400; font-size: 1.15rem; line-height: 1.4; }
+.quotes blockquote { margin: 0; padding: 20px 24px; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); font-family: var(--serif); font-weight: 650; font-size: 1.15rem; line-height: 1.4; }
 
 .table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
 .table th { text-align: left; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; padding: 0 16px; }
@@ -191,6 +186,3 @@ section { scroll-margin-top: 96px; }
 .split p, .split li { color: var(--ink-2); }
 @media (max-width: 760px) { .split, .split.flip { grid-template-columns: 1fr; } }
 
-/* ---------- Home: its own spotlight glow replaces the page glow ---------- */
-body.night { background-image: none; }
-body.night main { position: relative; overflow-x: clip; }

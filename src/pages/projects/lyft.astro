@@ -1,5 +1,6 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
+import WhatIDid from '../../components/WhatIDid.astro';
 import Video from '../../components/Video.astro';
 ---
 <ProductLayout
@@ -10,11 +11,17 @@ import Video from '../../components/Video.astro';
   hero="/images/lyft/hero.webp"
   heroAlt="Lyft Explore logo with a pink gem and two leaderboard screens"
   summary={[
-    ['The problem', 'Lyft bikes averaged <strong>2 rides a day</strong>, and <strong>~90%</strong> of revenue came from rideshare.'],
     ['What I did', 'Headed <strong>ideation</strong>, designed the <strong>slides</strong>, and made <strong>every mockup</strong>.'],
+    ['The problem', 'Lyft bikes averaged <strong>2 rides a day</strong>, and <strong>~90%</strong> of revenue came from rideshare.'],
     ['The result', 'A feature concept projected at <strong>720% ROI</strong>.'],
   ]}
 >
+  <WhatIDid heading='Ideas, slides, every mockup.' items={[
+    ['Headed ideation', 'Led our brainstorm through <strong>rewards, aviation and car-perk ideas</strong> before we landed on gamified exploration.'],
+    ['Designed the slides', 'Built the <a href="https://gowustl-my.sharepoint.com/:p:/g/personal/joselyn_wustl_edu/IQAgulBupaGSQJfH5YM6-W8MAcLyqi0HsYOm8b-gLzve34E?e=NjrXkf" target="_blank" rel="noopener">pitch deck ↗</a>: the story, the visuals and the business case.'],
+    ['Made every mockup', 'The <strong>app screens</strong>, <strong>dock kiosk</strong>, <strong>handlebar screen</strong>, billboard and campaign visuals.'],
+  ]} />
+
   <section class="chapter">
     <span class="num">Why this problem</span>
     <p class="pull">“We wanted a <em>creative</em> answer to a real problem Lyft faces, and to help them stand out where Uber isn’t the default: <span class="hl">bikes and scooters</span>.”</p>
