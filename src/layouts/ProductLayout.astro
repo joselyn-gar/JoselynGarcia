@@ -13,9 +13,10 @@ interface Props {
   heroAlt: string;
   summary: [string, string][]; // 10-second summary: label, text (may contain <strong>)
   section?: 'projects' | 'playground';
-  heroTall?: boolean; // portrait hero: shown narrower so it fits the screen
+  heroTall?: boolean;
+  overview?: [string, string][]; // at-a-glance facts: context, deliverable, tools, team // portrait hero: shown narrower so it fits the screen
 }
-const { slug, eyebrow, title, tagline, hero, heroAlt, summary, section = 'projects', heroTall = false } = Astro.props;
+const { slug, eyebrow, title, tagline, hero, heroAlt, summary, section = 'projects', heroTall = false, overview = [] } = Astro.props;
 const item = items.find((i) => i.slug === slug)!;
 const next = nextItem(slug);
 ---
@@ -27,6 +28,11 @@ const next = nextItem(slug);
       <p class="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <p class="tagline" set:html={tagline}></p>
+      {overview.length > 0 && (
+        <dl class="overview" aria-label="Project overview">
+          {overview.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+        </dl>
+      )}
       <img class:list={['p-hero-img', { tall: heroTall }]} src={hero} alt={heroAlt} />
     </header>
 
@@ -65,6 +71,13 @@ const next = nextItem(slug);
   .product { --band: 1040px; --text: 680px; }
   .p-hero { padding: 128px 20px 0; text-align: center; }
   .role { display: inline-flex; align-items: center; gap: 10px; margin: 0 auto 22px; padding: 7px 16px 7px 7px; border-radius: 999px; background: var(--paper-2); font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+  .overview { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 36px; max-width: 900px; margin: 30px auto 0; padding: 18px 0 0; border-top: 1px solid var(--line); text-align: left; }
+  .overview div { min-width: 0; }
+  .overview dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  .overview dd { margin: 2px 0 0; font-weight: 600; font-size: 0.98rem; }
+  .role { max-width: calc(100% - 8px); text-align: left; }
+  .role span { flex: none; white-space: nowrap; }
+  @media (max-width: 640px) { .overview { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; justify-content: stretch; } .role { font-size: 0.88rem; } }
   .role span { padding: 4px 10px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .p-hero h1 { font-size: clamp(3.2rem, 8vw, 6rem); letter-spacing: -0.01em; margin: 0 0 0.2em; }
   .tagline { font-size: clamp(1.2rem, 2vw, 1.55rem); color: var(--ink-2); max-width: 720px; margin: 0 auto; line-height: 1.4; }
